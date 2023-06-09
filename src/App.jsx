@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 function App() {
@@ -8,17 +10,16 @@ function App() {
 
 	const shortenLink = async (event) => {
 		event.preventDefault();
-    try {
-
-		const response = await fetch(
-			`https://api.shrtco.de/v2/shorten?url=${link}`
-		);
-		const data = await response.json();
-		setShortenedLink(data.result.full_short_link);
-	} catch(event) {
-    alert('Please enter a valid link')
-  };
-  }
+		try {
+			const response = await fetch(
+				`https://api.shrtco.de/v2/shorten?url=${link}`
+			);
+			const data = await response.json();
+			setShortenedLink(data.result.full_short_link);
+		} catch (event) {
+			alert("Please enter a valid link");
+		}
+	};
 	return (
 		<div className='main'>
 			<h1 className='heading'>Link Shortner</h1>
@@ -37,10 +38,14 @@ function App() {
 			<div className='result'>
 				<div className='shortened-link'>{shortenedLink}</div>
 				<CopyToClipboard text={shortenedLink}>
-					<button className='copy-button' onClick={() => alert("Copied")}>
+					<button
+						className='copy-button'
+						onClick={() => toast.success("copied", { theme: "dark" })}
+					>
 						Copy Link
 					</button>
 				</CopyToClipboard>
+				<ToastContainer />
 			</div>
 		</div>
 	);
