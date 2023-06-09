@@ -20,6 +20,8 @@ function App() {
 			alert("Please enter a valid link");
 		}
 	};
+
+
 	return (
 		<div className='main'>
 			<h1 className='heading'>Link Shortner</h1>
@@ -36,7 +38,7 @@ function App() {
 				<button className='button'>Shorten</button>
 			</form>
 			<div className='result'>
-				<div className='shortened-link'>{shortenedLink}</div>
+				<a href={shortenedLink} target="_blank" className='shortened-link'>{shortenedLink}</a>
 				<CopyToClipboard text={shortenedLink}>
 					<button
 						className='copy-button'
