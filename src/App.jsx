@@ -37,18 +37,22 @@ function App() {
 				/>
 				<button className='button'>Shorten</button>
 			</form>
-			<div className='result'>
+
+			{shortenedLink && (
+
+				<div className='result'>
 				<a href={shortenedLink} target="_blank" className='shortened-link'>{shortenedLink}</a>
 				<CopyToClipboard text={shortenedLink}>
 					<button
 						className='copy-button'
 						onClick={() => toast.success("copied", { theme: "dark" })}
-					>
+						>
 						Copy Link
 					</button>
 				</CopyToClipboard>
 				<ToastContainer />
 			</div>
+		)}
 		</div>
 	);
 }
