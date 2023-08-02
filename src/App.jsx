@@ -45,7 +45,7 @@ function App() {
 				<CopyToClipboard text={shortenedLink}>
 					<button
 						className='copy-button'
-						onClick={() => toast.success("copied", { theme: "dark" })}
+						onClick={() => toast.success("copied", { theme: "dark", position: "bottom-right" })}
 						>
 						Copy Link
 					</button>
